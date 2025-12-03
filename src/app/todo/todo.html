@@ -1,0 +1,51 @@
+<div class="min-h-screen bg-gray-100 flex justify-center py-10 px-4">
+  <div class="w-full max-w-lg bg-white rounded-xl shadow-lg p-6">
+
+    <h1 class="text-3xl font-bold text-center text-indigo-600 mb-6">
+      To-Do App
+    </h1>
+
+    <!-- Add Task -->
+    <div class="flex gap-2 mb-6">
+      <input
+        [(ngModel)]="newTask"
+        placeholder="Enter a new task..."
+        class="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+
+      <button
+        (click)="addTask()"
+        class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 active:scale-95 transition"
+      >
+        Add
+      </button>
+    </div>
+
+    <!-- Task List -->
+    <ul class="space-y-3">
+      <li *ngFor="let task of tasks" class="flex items-center justify-between bg-gray-50 p-3 rounded-lg shadow-sm">
+
+        <div class="flex items-center gap-3">
+          <input
+            type="checkbox"
+            [(ngModel)]="task.completed"
+            (change)="updateTask(task)"
+            class="h-5 w-5 text-indigo-600"
+          />
+          <span [class.line-through]="task.completed" class="text-lg">
+            {{ task.title }}
+          </span>
+        </div>
+
+        <button
+          (click)="deleteTask(task.id)"
+          class="text-red-500 hover:text-red-700 transition"
+        >
+          ✖
+        </button>
+
+      </li>
+    </ul>
+
+  </div>
+</div>
